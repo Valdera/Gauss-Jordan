@@ -12,7 +12,7 @@ def gaussjordan(linear_mtx, solution):
     # Main Loop
     for i in range(matrix_length):
         # 1) Partial Pivoting
-        if (linear_mtx[i][i] < 1): # Check if the pivot is 0 or not, if zero check the next row
+        if (linear_mtx[i][i] != 0): # Check if the pivot is 0 or not, if zero check the next row
             for j in range(i + 1, matrix_length): # Check the next row
                 if (abs(linear_mtx[j][i]) > abs(linear_mtx[i] [i])): # If the absolute next row is higher than 0 switch the row
                     for k in range(i, matrix_length):
