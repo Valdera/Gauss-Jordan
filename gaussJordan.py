@@ -24,23 +24,26 @@ def gaussjordan(linear_mtx, solution):
         # 3) Elimination Loop
         return linear_mtx, solution
 
-# TESTING
-a = [[0, 1, 1, 1],
-     [3, 0, 3, -4],
-     [1, 1, 1, 1],
-     [2, 3, 1, 3]]
-b = [0, 7, 6, 6]
+def main():
+	# TESTING
+	a = [[0, 1, 1, 1],
+		[3, 0, 3, -4],
+		[1, 1, 1, 1],
+		[2, 3, 1, 3]]
+	b = [0, 7, 6, 6]
+	matrix, solution = gaussjordan(a, b)
+	print("The elimination matrix is ", matrix)
+	print("The solution is ", solution)
+	
+	"""
+	1) AFTER PIVOTING
+	The elimination matrix is  [[3, 0, 3, -4], [0, 1, 1, 1], [1, 1, 1, 1], [2, 3, 1, 3]]
+	The solution is  [7, 0, 6, 6]
+	2) AFTER DIVISION OF THE PIVOT
+	The elimination matrix is [[1, 0, 1, -4/3], [0, 1, 1, 1], [1, 1, 1, 1], [2, 3, 1, 3]]
+	The solution is [7/3, 0, 6, 6]
+	3) AFTER ELIMINATION LOOP
+	"""
 
-matrix, solution = gaussjordan(a, b)
-print("The elimination matrix is ", matrix)
-print("The solution is ", solution)
-
-"""
-1) AFTER PIVOTING
-The elimination matrix is  [[3, 0, 3, -4], [0, 1, 1, 1], [1, 1, 1, 1], [2, 3, 1, 3]]
-The solution is  [7, 0, 6, 6]
-2) AFTER DIVISION OF THE PIVOT
-The elimination matrix is [[1, 0, 1, -4/3], [0, 1, 1, 1], [1, 1, 1, 1], [2, 3, 1, 3]]
-The solution is [7/3, 0, 6, 6]
-3) AFTER ELIMINATION LOOP
-"""
+if (__name__ == '__main__'):
+	main()
