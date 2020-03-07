@@ -1,28 +1,58 @@
-def gaussjordan(linear_mtx, solution):
+def gaussjordan(matrix, sol):
     # Check if the input is a list
-    if (type(linear_mtx) != list or type(solution) != list):
+    if (type(matrix) != list or type(sol) != list):
         print("The Input must a list")
         return
-    matrix_length = len(solution)
+    row_length = len(matrix)
     # Check if the matrix is (n x n)
-    for i in range(matrix_length):
-        if (matrix_length != len(linear_mtx[i])):
-            print("The matrix must be n x n")
+    for i in range(row_length):
+        if (row_length != len(matrix[i])):
+            print("The matrix is incorrect")
             return
-    # Main Loop
-    for i in range(matrix_length):
-        # 1) Partial Pivoting
-        if (linear_mtx[i][i] != 0): # Check if the pivot is 0 or not, if zero check the next row
-            for j in range(i + 1, matrix_length): # Check the next row
-                if (abs(linear_mtx[j][i]) > abs(linear_mtx[i] [i])): # If the absolute next row is higher than 0 switch the row
-                    for k in range(i, matrix_length):
-                        linear_mtx[i][k], linear_mtx[j][k] = linear_mtx[j][k], linear_mtx[i][k] # Switch The Row
-                    solution[i], solution[j]=  solution[j], solution[i]
-                    break
-        # 2) Divison of the pivot row
+    # Mix the matrix and the solution
+    for i in range(row_length):
+        matrix[i].append(sol[i])
+    # Gauss Jordan Elimination
+    try:
+        # Main Loop
+        for i in range(row_length):
+            # 1) Partial Pivoting
+            if (matrix[i][i] == 0):
+                for j in range(row_length + 1):
+                    temp = matrix[i][j]
+                    matrix[i][j] = matrix[i + 1][j]
+                    matrix[i + 1][j] = temp
+            # 2) Parameter for division
+            if (matrix[i][i] != 1):
+                par = matrix[i][i]
+                for j in range(row_length + 1):
+                    matrix[i][j] = matrix[i][j] / par
+            # 3) Substraction
+            for j in range(i + 1, row_length):
+                par = matrix[j][i]
+                for k in range(row_length + 1):
+                    matrix[j][k] = matrix[j][k] - par * matrix[i][k]
+            # 4) Elimination
+            for i in range(row_length):
+                for j in range(0, row_length - 1 - i):
+                    par = matrix[j][row_length - 1 - i]
+                    for k in range(row_length + 1):
+                        matrix[j][k] = matrix[j][k] - par * matrix[row_length - 1 - i][k]
+        # Change the -0.0 to 0.0
+        for i in range(row_length):
+            for j in range(row_length + 1):
+                if(matrix[i][j] == -0):
+                    matrix[i][j] = 0.0
+        solution = list()
+        # Separate the matrix and the solution
+        for i in range(row_length):
+            sol = matrix[i].pop(row_length)
+            solution.append(sol)
+        return matrix, solution
+    except(err):
+        print("The Matrix has Trivial Solution")
+        return 
 
-        # 3) Elimination Loop
-        return linear_mtx, solution
 
 def main():
 	# TESTING
