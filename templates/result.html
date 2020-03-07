@@ -12,6 +12,7 @@
 				{% for j in range(count): %}
 					<td>{% print mtx[i][j]%}</td>
 				{% endfor %}
+				<td>{% print sol[i]%}<td>
 			</tr>
 		{% endfor %}
 		</table>
@@ -19,7 +20,7 @@
 		<table>
 		{% for i in range(count): %}
 			<tr>
-				<td>{% print sol[i]%}</td>	
+				<td>X{% print i+1%} : {% print sol[i]%}</td>	
 			</tr>
 		{% endfor %}
 		</table>
