@@ -6,13 +6,16 @@
 <body>
 	{% if count is defined and mtx is defined and sol is defined: %}
 		<p>The elimination matrix is:</p>
-		<table>
+		<table style="
+    border-spacing: 0 0;
+    text-align: center;
+    color: #ff5151;">
 		{% for i in range(count): %}
 			<tr>
 				{% for j in range(count): %}
-					<td>{% print mtx[i][j]%}</td>
+					<td style:"padding: 10px 10px">{% print mtx[i][j]%}</td>
 				{% endfor %}
-				<td>{% print sol[i]%}<td>
+				<td style:"padding: 10px 10px">{% print sol[i]%}<td>
 			</tr>
 		{% endfor %}
 		</table>
