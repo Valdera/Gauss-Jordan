@@ -10,7 +10,7 @@ for i in range(x):
             print('x', j+1, ': ', sep='', end='')
             n = int(input())
         matrix[i].append(n)
-print('ARRAY: ',matrix)
+print('\nARRAY: ',matrix)
 
 #using gauss-jordan elimination
 for i in range(x):
