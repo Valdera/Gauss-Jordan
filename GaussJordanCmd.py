@@ -1,10 +1,14 @@
 matrix = list()
-x = int(input("Enter how many var you want:"))
+x = int(input("Enter how many var you want: "))
 for i in range(x):
     print('Enter equation ', i+1, ':', sep='')
     matrix.append([])
     for j in range(x+1):
-        n = int(input("num :"))
+        if (j == x):
+            n = int(input("y: "))
+        else:
+            print('x', j+1, ': ', sep='', end='')
+            n = int(input())
         matrix[i].append(n)
 print('ARRAY: ',matrix)
 
@@ -35,4 +39,4 @@ for i in range(x):
             matrix[j][k] = matrix[j][k] - par * matrix[x-1-i][k]
 
 for i in range(x):
-    print('x', i+1, ' = ', matrix[i][x], sep='')
+    print('x', i+1, ' = %.2f' % matrix[i][x], sep='')
