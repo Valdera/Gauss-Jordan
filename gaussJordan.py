@@ -62,11 +62,9 @@ def main():
 		[2, 3, 1, 3]]
 	b = [0, 7, 6, 6]
 	matrix, solution = gaussjordan(a, b)
-	#print("The elimination matrix is ", matrix)
-	print("The solution is:")
-	for i in range(int(len(matrix))):
-		print("x", i+1, " = %.2f" % solution[i], sep='')
-
+	print("The elimination matrix is ", matrix)
+	print("The solution is: ", solution)
+	
 	"""
 	1) AFTER PIVOTING
 	The elimination matrix is  [[3, 0, 3, -4], [0, 1, 1, 1], [1, 1, 1, 1], [2, 3, 1, 3]]
