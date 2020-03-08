@@ -9,18 +9,21 @@ def index():
 	if (request.method == 'GET'):
 		return render_template('index.html')
 	elif (request.method == 'POST'):
-		linear_mtx = list()
-		solution = list()
-		cnt = int(request.form['count'])
-		for i in range(cnt):
-			tmp = list()
-			for j in range(cnt):
-				tmp.append(int(request.form['mi'+str(i)+'j'+str(j)]))
-			linear_mtx.append(tmp)
-		for i in range(cnt):
-			solution.append(int(request.form['mi'+str(i)+'j'+str(cnt)]))
-		linear_mtx, solution = gaussjordan(linear_mtx,solution)
-		return render_template('result.html', mtx = linear_mtx, sol = solution, count = cnt)
+		try:
+			linear_mtx = list()
+			solution = list()
+			cnt = int(request.form['count'])
+			for i in range(cnt):
+				tmp = list()
+				for j in range(cnt):
+					tmp.append(float(request.form['mi'+str(i)+'j'+str(j)]))
+				linear_mtx.append(tmp)
+			for i in range(cnt):
+				solution.append(float(request.form['mi'+str(i)+'j'+str(cnt)]))
+			linear_mtx, solution = gaussjordan(linear_mtx,solution)
+			return render_template('result.html', mtx = linear_mtx, sol = solution, count = cnt)
+		except:
+			return render_template('result.html')
 
 if (__name__ == '__main__'):
 	app.run()

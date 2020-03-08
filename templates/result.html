@@ -1,21 +1,29 @@
 <html>
 <head>
 	<title>Gauss-Jordan Elimination Tool</title>
+	<style>
+		table, td {
+			border: 1px solid black;
+			padding: 5px;
+			text-align: center;
+		}
+		table {
+			border-spacing: 5px;
+			color: #ff5151;
+		}
+	</style>
 </head>
 
 <body>
 	{% if count is defined and mtx is defined and sol is defined: %}
 		<p>The elimination matrix is:</p>
-		<table style="
-    border-spacing: 0 0;
-    text-align: center;
-    color: #ff5151;">
-		{% for i in range(count): %}
+		<table>
+			{% for i in range(count): %}
 			<tr>
 				{% for j in range(count): %}
-					<td style:"padding: 10px 10px">{% print mtx[i][j]%}</td>
+					<td> {% print '%.2f' % mtx[i][j] %} </td>
 				{% endfor %}
-				<td style:"padding: 10px 10px">{% print sol[i]%}<td>
+				<td> {% print '%.2f' % sol[i] %} </td>
 			</tr>
 		{% endfor %}
 		</table>
@@ -23,10 +31,12 @@
 		<table>
 		{% for i in range(count): %}
 			<tr>
-				<td>X{% print i+1%} : {% print sol[i]%}</td>	
-			</tr>
+				<td>X{% print i+1%} : {% print '%.2f' % sol[i] %}</td>	
+			</tr> 
 		{% endfor %}
 		</table>
+	{% else %}
+		<p>The Matrix has Trivial Solution!</p>
 	{% endif %}
 </body>
 </html>

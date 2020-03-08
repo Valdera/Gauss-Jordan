@@ -49,9 +49,9 @@ def gaussjordan(matrix, sol):
             sol = matrix[i].pop(row_length)
             solution.append(sol)
         return matrix, solution
-    except(err):
+    except:
         print("The Matrix has Trivial Solution")
-        return 
+        return
 
 
 def main():
